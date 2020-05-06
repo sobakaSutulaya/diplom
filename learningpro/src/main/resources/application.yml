@@ -1,12 +1,19 @@
 server:
-  port: 8081
-  servlet :
-    context-path: /resource-server
+  port: 8080
 
+#spring:
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issue-uri: http://localhost:8083/auth/realms/learningpro
+#          jwk-set-uri: http://localhost:8083/auth/realms/learningpro/protocol/openid-connect/certs
 spring:
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issue-uri: http://localhost:8083/auth/realms/learningpro
-          jwk-set-uri: http://localhost:8083/auth/realms/learningpro/protocol/openid-connect/certs
+  data:
+    mongodb:
+#      host: mongo-db
+      host: localhost
+      port: 27017
+      username: root
+      password: root
+      database: learning-pro-test-db
