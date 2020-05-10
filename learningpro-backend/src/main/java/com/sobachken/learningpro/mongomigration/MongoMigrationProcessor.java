@@ -69,7 +69,7 @@ public class MongoMigrationProcessor {
             migrations.forEach(migration -> migration.migrate(mongoTemplate));
             mongoHistory.setMigrated(true);
         } catch (MongoMigrationException ex) {
-            log.error("Migration failed cause : '{}'", ex);
+            log.error("Migration failed cause :", ex);
             mongoHistory.setMigrated(false);
         }
         mongoHistory.setLastUpdateDate(LocalDateTime.now());

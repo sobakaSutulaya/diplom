@@ -13,7 +13,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -63,13 +62,13 @@ public class StudentMigration implements MongoMigration {
         }
     }
 
-    private List<Student> getStudents() {
+    private List<Student> getStudents() throws Exception {
         try {
             return objectMapper.readValue(loadStudentsFromResources().getInputStream(), new TypeReference<List<Student>>() {});
         } catch (Exception ex) {
-            log.error("Error during load students, cause : '{}'", ex);
+            log.error("Error during loading students");
+            throw ex;
         }
-        return Collections.emptyList();
     }
 
     private Resource loadStudentsFromResources() {

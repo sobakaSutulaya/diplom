@@ -2,7 +2,6 @@ package com.sobachken.learningpro.model.migrations;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mongodb.Mongo;
 import com.sobachken.learningpro.common.exception.migration.MongoMigrationException;
 import com.sobachken.learningpro.model.Teacher;
 import com.sobachken.learningpro.mongomigration.MongoMigration;
@@ -14,7 +13,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,13 +49,13 @@ public class TeacherMigration implements MongoMigration {
         }
     }
 
-    private List<Teacher> getTeachers() {
+    private List<Teacher> getTeachers() throws Exception {
         try {
             return objectMapper.readValue(loadTeachersFromResource().getInputStream(), new TypeReference<List<Teacher>>() {});
         } catch (Exception ex) {
-            log.error("Error while load teachers from resources, cause : '{}'", ex);
+            log.error("Error while loading teachers from resources");
+            throw ex;
         }
-        return Collections.emptyList();
     }
 
     private Resource loadTeachersFromResource() {

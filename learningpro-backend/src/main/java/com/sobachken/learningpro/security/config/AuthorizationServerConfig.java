@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -15,7 +16,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-    private static final String CLIENT_ID = "learnging-pro";
+    private static final String CLIENT_ID = "learning-pro";
     private static final String CLIENT_SECRET = "test-secret";
     private static final String GRANT_TYPE_PASSWORD = "password";
     private static final String AUTH_CODE = "authorization_code";
@@ -29,10 +30,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private static final int REFRESH_TOKEN_VALIDITY_SECONDS = 6 * 60 * 60;
 
     private final AuthenticationManager authenticationManager;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public AuthorizationServerConfig(AuthenticationManager authenticationManager) {
+    public AuthorizationServerConfig(AuthenticationManager authenticationManager,
+                                     BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.authenticationManager = authenticationManager;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Bean
@@ -50,7 +54,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated()");
+                .checkTokenAccess("isAuthenticated()")
+                .passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Override
