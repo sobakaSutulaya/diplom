@@ -62,7 +62,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 .withClient(CLIENT_ID)
-                .secret(CLIENT_SECRET)
+                .secret(bCryptPasswordEncoder.encode(CLIENT_SECRET))
                 .authorizedGrantTypes(GRANT_TYPE_PASSWORD, AUTH_CODE, REFRESH_CODE, IMPLICIT)
                 .scopes(READ, WRITE, TRUST)
                 .accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS)

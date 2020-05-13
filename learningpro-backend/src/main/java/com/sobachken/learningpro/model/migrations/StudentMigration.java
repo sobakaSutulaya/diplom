@@ -6,11 +6,14 @@ import com.sobachken.learningpro.common.exception.migration.MongoMigrationExcept
 import com.sobachken.learningpro.model.Student;
 import com.sobachken.learningpro.mongomigration.MongoMigration;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -20,8 +23,13 @@ import java.util.UUID;
 @Component
 public class StudentMigration implements MongoMigration {
 
-    private final static String STUDENTS_PATH = "mongomigration/students/students.json";
+    private final static String STUDENTS_PATH = "target/mongomigration/students/students.json";
     private final ObjectMapper objectMapper = new ObjectMapper();
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private ResourceLoader resourceLoader;
 
     @Override
     public void migrate(MongoTemplate mongoTemplate) throws MongoMigrationException {
@@ -41,6 +49,7 @@ public class StudentMigration implements MongoMigration {
         if (savedStudent == null) {
             log.info("Create student with cardNumber : '{}'", student.getCardNumber());
             student.setId(UUID.randomUUID());
+            student.setPassword(bCryptPasswordEncoder.encode(student.getPassword()));
             mongoTemplate.save(student);
         } else {
             log.info("Update student with cardNumber : '{}'", savedStudent.getCardNumber());
@@ -72,6 +81,7 @@ public class StudentMigration implements MongoMigration {
     }
 
     private Resource loadStudentsFromResources() {
+//        return resourceLoader.getResource(STUDENTS_PATH);
         return new ClassPathResource(STUDENTS_PATH);
     }
 }

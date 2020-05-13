@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {ApiService} from '../common/api.service';
-import {HttpParams} from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ApiService } from '../common/api.service';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   invalidLogin = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) {}
+  constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) { }
 
   onSubmit() {
     if (this.loginForm.invalid) {
@@ -28,17 +28,33 @@ export class LoginComponent implements OnInit {
     this.apiService.login(body.toString()).subscribe(data => {
       window.sessionStorage.setItem('token', JSON.stringify(data));
       console.log(window.sessionStorage.getItem('token'));
+      this.saveUserInStorage(this.loginForm.controls.username.value);
       this.router.navigate(['home']);
     }, error => {
-      alert(error.error.error_description);
+      console.log(error);
     });
+  }
+
+  private saveUserInStorage(login: string): void {
+    this.apiService.getUserId(login).subscribe(userId => {
+      console.log(userId);
+      window.sessionStorage.setItem('userId', JSON.stringify(userId));
+    }, error => {
+      window.sessionStorage.removeItem('token');
+      console.log('cant find user with specified login');
+      return;
+    });
+    this.apiService.getPrincipal().subscribe(principal => {
+      console.log(principal.authorities[0].authority);
+    })
+
   }
 
   ngOnInit() {
     window.sessionStorage.removeItem('token');
     this.loginForm = this.formBuilder.group({
-      username : ['', Validators.compose([Validators.required])],
-      password : ['', Validators.required]
+      username: ['', Validators.compose([Validators.required])],
+      password: ['', Validators.required]
     });
   }
 

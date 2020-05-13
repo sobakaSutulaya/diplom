@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../common/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private apiService: ApiService) { }
 
   ngOnInit() {
+    if (!window.sessionStorage.getItem('token')) {
+      this.router.navigate(['login']);
+      return;
+    }
   }
 
 }

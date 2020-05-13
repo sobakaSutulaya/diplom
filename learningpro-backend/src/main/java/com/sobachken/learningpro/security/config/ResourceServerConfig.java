@@ -21,11 +21,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.addFilterBefore(new CORSFilter(), ChannelProcessingFilter.class);
-        http.authorizeRequests()
+//        http.addFilterBefore(new CORSFilter(), ChannelProcessingFilter.class);
+        http.anonymous().disable()
+                .authorizeRequests()
                 .antMatchers("oauth/token").permitAll()
-                .anyRequest()
-                .authenticated()
+                .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }

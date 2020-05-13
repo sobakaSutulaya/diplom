@@ -128,7 +128,7 @@
                 </includes>
             </resource>
             <resource>
-                <directory>../learningpro-frontend</directory>
+                <directory>../learningpro-frontend/dist/learningpro-frontend</directory>
                 <targetPath>target/static</targetPath>
                 <includes>
                     <include>**.*</include>

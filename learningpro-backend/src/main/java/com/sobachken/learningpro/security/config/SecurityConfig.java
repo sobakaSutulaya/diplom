@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsServiceImpl userDetailsService;
@@ -32,19 +33,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf()
-                .disable()
-                .anonymous().disable()
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .authorizeRequests()
-                .antMatchers("/oauth/token").permitAll();
-//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers("/login").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .csrf()
-//                .disable();
+                .antMatchers("/oauth/token", "/", "index.html", "/login").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .csrf()
+                .disable();
     }
 
     @Bean

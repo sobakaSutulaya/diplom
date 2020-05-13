@@ -7,8 +7,8 @@
     <artifactId>learningpro</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <modules>
-        <module>learningpro-backend</module>
         <module>learningpro-frontend</module>
+        <module>learningpro-backend</module>
     </modules>
     <packaging>pom</packaging>
     <name>learningpro</name>
