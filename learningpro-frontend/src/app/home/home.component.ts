@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../common/api.service';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../common/local-storage.service';
+import { AuthService } from '../common/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +10,13 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router, private apiService: ApiService) { }
+  constructor(private router: Router,
+    private localStorageService: LocalStorageService,
+    private authService: AuthService) { }
 
   ngOnInit() {
-    if (!window.sessionStorage.getItem('token')) {
-      this.router.navigate(['login']);
+    if (!this.localStorageService.getItem('token') && this.authService.isLoggedIn) {
+      this.router.navigate(['/login']);
       return;
     }
   }

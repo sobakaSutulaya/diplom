@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from '../common/api.service';
 import { HttpParams } from '@angular/common/http';
+import { AuthService } from '../common/auth.service';
+import { LocalStorageService } from '../common/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -14,10 +15,14 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   invalidLogin = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) { }
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private localStorageService: LocalStorageService) { }
 
   onSubmit() {
     if (this.loginForm.invalid) {
+      this.invalidLogin = true;
       return;
     }
     const body = new HttpParams()
@@ -25,33 +30,45 @@ export class LoginComponent implements OnInit {
       .set('password', this.loginForm.controls.password.value)
       .set('grant_type', 'password');
 
-    this.apiService.login(body.toString()).subscribe(data => {
-      window.sessionStorage.setItem('token', JSON.stringify(data));
-      console.log(window.sessionStorage.getItem('token'));
+    this.authService.login(body.toString()).subscribe(data => {
+      this.localStorageService.setItem('token', data);
+      console.log(this.localStorageService.getItem('token'));
       this.saveUserInStorage(this.loginForm.controls.username.value);
-      this.router.navigate(['home']);
+      this.authService.setLoggedIn(true);
+      this.router.navigate(['/home']);
     }, error => {
       console.log(error);
     });
   }
 
   private saveUserInStorage(login: string): void {
-    this.apiService.getUserId(login).subscribe(userId => {
-      console.log(userId);
-      window.sessionStorage.setItem('userId', JSON.stringify(userId));
-    }, error => {
-      window.sessionStorage.removeItem('token');
-      console.log('cant find user with specified login');
-      return;
-    });
-    this.apiService.getPrincipal().subscribe(principal => {
-      console.log(principal.authorities[0].authority);
-    })
+    this.saveUserIdInStorage(login);
+    this.saveRoleInStorage();
+  }
 
+  private saveUserIdInStorage(login: string): void {
+    this.authService.getUserId(login).subscribe(userId => {
+      console.log(userId);
+      this.localStorageService.setItem('userId', userId);
+    }, error => {
+      this.localStorageService.clear();
+      console.log(error);
+    });
+  }
+
+  private saveRoleInStorage(): void {
+    this.authService.getPrincipal().subscribe(principal => {
+      console.log(principal.authorities[0].authority);
+      const userRole = principal.authorities[0].authority;
+      this.localStorageService.setItem('userRole', userRole);
+    }, error => {
+      this.localStorageService.clear();
+      console.log(error);
+    });
   }
 
   ngOnInit() {
-    window.sessionStorage.removeItem('token');
+    this.localStorageService.clear();
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required])],
       password: ['', Validators.required]

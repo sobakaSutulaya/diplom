@@ -3,10 +3,10 @@ package com.sobachken.learningpro.security.controller;
 import com.sobachken.learningpro.security.service.UserDetailsServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.websocket.server.PathParam;
 import java.security.Principal;
 
 @RestController
@@ -19,8 +19,8 @@ public class UserController {
         this.userDetailsService = userDetailsService;
     }
 
-    @GetMapping("/id/{login}")
-    public ResponseEntity<?> getUserId(@PathVariable String login) {
+    @GetMapping("/id")
+    public ResponseEntity<?> getUserId(@PathParam("login") String login) {
         return ResponseEntity.ok(this.userDetailsService.getLoggedUserId(login));
     }
 
