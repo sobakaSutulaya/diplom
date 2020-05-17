@@ -1,10 +1,9 @@
 package com.sobachken.learningpro.security.service;
 
-import com.sobachken.learningpro.model.Student;
-import com.sobachken.learningpro.model.Teacher;
+import com.sobachken.learningpro.model.user.Student;
+import com.sobachken.learningpro.model.user.Teacher;
 import com.sobachken.learningpro.repository.StudentRepository;
 import com.sobachken.learningpro.repository.TeacherRepository;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.Set;
 import java.util.UUID;
 
 @Service

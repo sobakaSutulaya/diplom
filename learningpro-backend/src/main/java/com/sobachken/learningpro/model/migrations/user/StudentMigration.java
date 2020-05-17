@@ -1,9 +1,9 @@
-package com.sobachken.learningpro.model.migrations;
+package com.sobachken.learningpro.model.migrations.user;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sobachken.learningpro.common.exception.migration.MongoMigrationException;
-import com.sobachken.learningpro.model.Student;
+import com.sobachken.learningpro.model.user.Student;
 import com.sobachken.learningpro.mongomigration.MongoMigration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import java.util.UUID;
 @Component
 public class StudentMigration implements MongoMigration {
 
-    private final static String STUDENTS_PATH = "target/mongomigration/students/students.json";
+    private final static String STUDENTS_PATH = "target/mongomigration/students/students.json";//todo: find out why it not works without target in classpath
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
@@ -81,7 +81,6 @@ public class StudentMigration implements MongoMigration {
     }
 
     private Resource loadStudentsFromResources() {
-//        return resourceLoader.getResource(STUDENTS_PATH);
         return new ClassPathResource(STUDENTS_PATH);
     }
 }

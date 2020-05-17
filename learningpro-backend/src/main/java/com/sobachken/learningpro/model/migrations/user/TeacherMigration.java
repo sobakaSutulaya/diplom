@@ -1,9 +1,9 @@
-package com.sobachken.learningpro.model.migrations;
+package com.sobachken.learningpro.model.migrations.user;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sobachken.learningpro.common.exception.migration.MongoMigrationException;
-import com.sobachken.learningpro.model.Teacher;
+import com.sobachken.learningpro.model.user.Teacher;
 import com.sobachken.learningpro.mongomigration.MongoMigration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

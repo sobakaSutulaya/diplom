@@ -4,7 +4,16 @@
     "lastName": "Ivanov",
     "cardNumber": "160079",
     "password": "g741s",
-    "groupName":"po-63"
+    "groupName":"po-63",
+    "courseNumber" : "4"
+  },
+  {
+    "firstName" : "Konstantin",
+    "lastName": "Kotikov",
+    "cardNumber": "160089",
+    "password": "f123r",
+    "groupName":"po-83",
+    "courseNumber" : "2"
   }
 ]
 

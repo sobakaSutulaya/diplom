@@ -1,4 +1,4 @@
-package com.sobachken.learningpro.model;
+package com.sobachken.learningpro.model.task;
 
 import com.sobachken.learningpro.mongomigration.annotation.ChangeLog;
 import com.sobachken.learningpro.utils.Identifiable;
@@ -9,15 +9,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
 
-@ChangeLog(version = 1)
-@Document("teachers")
 @Data
-@NoArgsConstructor
+@Document("tasks")
+@ChangeLog(version = 2)
 @AllArgsConstructor
-public class Teacher implements Identifiable {
+@NoArgsConstructor
+public class Task implements Identifiable {
     private UUID id;
-    private String login;
-    private String password;
-    private String firstName;
-    private String lastName;
+    private String name;
+    private String description;
+    private int courseNumber;
+    private String subject;
 }

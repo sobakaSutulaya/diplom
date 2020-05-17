@@ -1,6 +1,6 @@
 package com.sobachken.learningpro.importexport.export;
 
-import com.sobachken.learningpro.model.Student;
+import com.sobachken.learningpro.model.user.Student;
 import com.sobachken.learningpro.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 

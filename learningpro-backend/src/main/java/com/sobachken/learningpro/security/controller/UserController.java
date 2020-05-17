@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.websocket.server.PathParam;
 import java.security.Principal;
 
+import static com.sobachken.learningpro.common.ApiParam.LOGIN;
+import static com.sobachken.learningpro.common.ApiPath.*;
+
 @RestController
-@RequestMapping("learning-pro/users/")
+@RequestMapping(USERS_PATH)
 public class UserController {
 
     private final UserDetailsServiceImpl userDetailsService;
@@ -19,12 +22,12 @@ public class UserController {
         this.userDetailsService = userDetailsService;
     }
 
-    @GetMapping("/id")
-    public ResponseEntity<?> getUserId(@PathParam("login") String login) {
+    @GetMapping(ID_PATH)
+    public ResponseEntity<?> getUserId(@PathParam(LOGIN) String login) {
         return ResponseEntity.ok(this.userDetailsService.getLoggedUserId(login));
     }
 
-    @GetMapping("/me")
+    @GetMapping(ME_PATH)
     public Principal user(Principal principal) {
         return principal;
     }

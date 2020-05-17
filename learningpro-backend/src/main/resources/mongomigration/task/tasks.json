@@ -1,0 +1,9 @@
+[
+  {
+    "id": "34b5e420-1e46-4a0e-9a1b-5faecccda876",
+    "name" : "sum function",
+    "description" : "Write a function which will be return sum of two integers passing as an arguments. For example, sum(2, 2) should return 4. Argument will be passing in main(String[] args) as args variable",
+    "courseNumber" : "1",
+    "subject" : "programming essentials"
+  }
+]

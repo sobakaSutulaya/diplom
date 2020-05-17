@@ -1,6 +1,6 @@
 package com.sobachken.learningpro.repository;
 
-import com.sobachken.learningpro.model.Teacher;
+import com.sobachken.learningpro.model.user.Teacher;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
