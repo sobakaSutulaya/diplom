@@ -50,10 +50,12 @@ public class StudentMigration implements MongoMigration {
             log.info("Create student with cardNumber : '{}'", student.getCardNumber());
             student.setId(UUID.randomUUID());
             student.setPassword(bCryptPasswordEncoder.encode(student.getPassword()));
+            student.setGroupName(student.getGroupName().toUpperCase());
             mongoTemplate.save(student);
         } else {
             log.info("Update student with cardNumber : '{}'", savedStudent.getCardNumber());
             mergeStudent(savedStudent, student);
+            savedStudent.setGroupName(savedStudent.getGroupName().toUpperCase());
             mongoTemplate.save(savedStudent);
         }
     }

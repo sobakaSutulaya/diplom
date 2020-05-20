@@ -14,7 +14,13 @@ public class ApiPath {
     ALL = "all",
     SUBJECT = "subject",
     COMPLETED_TASK = "completed-task",
-    MARK_AS_COMPLETE = "mark-as-complete";
+    MARK_AS_COMPLETE = "mark-as-complete",
+    EVENTS = "events",
+    GROUP = "group",
+    BY = "by-",
+    BY_SUBJECT = BY + SUBJECT,
+    BY_GROUP = BY + GROUP,
+    COMPLETED_EVENT = "completed-event";
 
     public static final String APP_PATH = "/" + APP_NAME,
     USERS_PATH = APP_PATH + "/" + USERS,
@@ -28,7 +34,12 @@ public class ApiPath {
     TEACHERS_V1_PATH = API_V1_PATH + "/" + TEACHERS,
     TASKS_V1_PATH = API_V1_PATH + "/" + TASKS,
     COMPLETED_TASK_V1_PATH = API_V1_PATH + "/" + COMPLETED_TASK,
-    MARK_AS_COMPLETE_PATH = "/" + MARK_AS_COMPLETE;
+    MARK_AS_COMPLETE_PATH = "/" + MARK_AS_COMPLETE,
+    EVENTS_V1_PATH = "/" + APP_V1_PATH + "/" + EVENTS,
+    BY_SUBJECT_PATH = "/" + BY_SUBJECT,
+    BY_TEACHER_PATH = "/" + BY + "teacher",
+    BY_GROUP_PATH = "/" + BY_GROUP,
+    COMPLETED_EVENT_V1_PATH = "/" + COMPLETED_EVENT;
 
 
 }

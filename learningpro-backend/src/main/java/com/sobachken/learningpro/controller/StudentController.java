@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
-import static com.sobachken.learningpro.common.ApiPath.ID_PATH;
 import static com.sobachken.learningpro.common.ApiPath.STUDENTS_V1_PATH;
 
 @RestController
@@ -25,5 +24,10 @@ public class StudentController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getStudent(@PathVariable UUID id) {
         return ResponseEntity.ok(this.studentService.getStudent(id));
+    }
+
+    @GetMapping("/groups/{course}")
+    public ResponseEntity<?> getAllGroups(@PathVariable int course) {
+        return ResponseEntity.ok(this.studentService.getAllGroupNamesByCourse(course));
     }
 }
