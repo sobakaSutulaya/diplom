@@ -22,6 +22,7 @@ public class CompletedEventService {
     }
 
     public List<CompletedEvent> getCompletedEventsByStudentId(UUID studentId) {
+        log.info("Get completed event by student id = '{}'", studentId);
         return this.completedEventRepository.findAllByStudentId(studentId);
     }
 

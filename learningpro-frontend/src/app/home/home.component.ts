@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
     private authService: AuthService) { }
 
   ngOnInit() {
-    if (!this.localStorageService.getItem('token') && this.authService.isLoggedIn) {
+    if (!this.authService.isLoggedIn) {
       this.router.navigate(['/login']);
       return;
     }

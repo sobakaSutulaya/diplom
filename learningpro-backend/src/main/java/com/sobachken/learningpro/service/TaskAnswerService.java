@@ -23,11 +23,13 @@ public class TaskAnswerService {
     }
 
     public TaskAnswer getTaskAnswer(UUID id) {
+        log.info("Get task answer by id = '{}'", id);
         return this.taskAnswerRepository.findById(id)
                 .orElseThrow(() -> new HttpException(HttpStatus.NOT_FOUND, "Task Answer not found by id = " + id));
     }
 
     public TaskAnswer getTaskAnswerByTaskId(UUID taskId) {
+        log.info("Get task answer by task id = '{}'", taskId);
         if (!taskService.existsById(taskId)) {
             throw new HttpException(HttpStatus.NOT_FOUND, "Task not exist by id = " + taskId);
         }

@@ -34,14 +34,17 @@ public class TaskService {
     }
 
     public List<Task> getAll() {
+        log.info("Get all tasks");
         return Lists.newArrayList(this.taskRepository.findAll());
     }
 
     public List<Task> getAllByCourse(int courseNumber) {
+        log.info("Get all tasks by course = '{}'", courseNumber);
         return this.taskRepository.findAllByCourseNumber(courseNumber);
     }
 
     public List<Task> getAllBySubject(String subject) {
+        log.info("Get all tasks by subject = '{}'", subject);
         return this.taskRepository.findAllBySubject(subject);
     }
 

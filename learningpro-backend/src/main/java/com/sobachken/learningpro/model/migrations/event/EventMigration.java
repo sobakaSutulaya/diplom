@@ -47,7 +47,6 @@ public class EventMigration implements MongoMigration {
             savedEvent.setGroupNames(event.getGroupNames());
             mongoTemplate.save(savedEvent);
         } else {
-            event.setId(UUID.randomUUID());
             mongoTemplate.save(event);
         }
     }

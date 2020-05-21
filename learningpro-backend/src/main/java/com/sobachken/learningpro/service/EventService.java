@@ -30,23 +30,28 @@ public class EventService {
     }
 
     public List<Event> getAll() {
+        log.info("Get all events");
         return Lists.newArrayList(this.eventRepository.findAll());
     }
 
     public Event getEvent(UUID id) {
+        log.info("Get event by id = '{}'", id);
         return this.eventRepository.findById(id)
                 .orElseThrow(() -> new HttpException(HttpStatus.NOT_FOUND, "Event not found by id = " + id));
     }
 
     public List<Event> getAllByTeacherId(UUID teacherId) {
+        log.info("Get all events by teacher id = '{}'", teacherId);
         return this.eventRepository.findAllByTeacherId(teacherId);
     }
 
     public List<Event> getAllBySubject(String subject) {
+        log.info("Get all events by subject = '{}'", subject);
         return this.eventRepository.findAllBySubject(subject);
     }
 
     public List<Event> getAllByGroup(String groupName) {
+        log.info("get all events by groupName = '{}'", groupName);
         return StreamSupport.stream(this.eventRepository.findAll().spliterator(), false)
                 .filter(event -> event.getGroupNames().contains(groupName))
                 .collect(Collectors.toList());

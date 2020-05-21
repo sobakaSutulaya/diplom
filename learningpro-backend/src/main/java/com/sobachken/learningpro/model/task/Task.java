@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Data
 @Document("tasks")
-@ChangeLog(version = 2)
+@ChangeLog(version = 4)
 @AllArgsConstructor
 @NoArgsConstructor
 public class Task implements Identifiable {

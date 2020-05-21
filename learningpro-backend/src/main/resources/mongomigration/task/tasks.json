@@ -5,5 +5,12 @@
     "description" : "Write a function which will be return sum of two integers passing as an arguments. For example, sum(2, 2) should return 4. Argument will be passing in main(String[] args) as args variable",
     "courseNumber" : "1",
     "subject" : "programming essentials"
+  },
+  {
+    "id": "24b5e420-1e46-4a0e-9a1b-5faecccda879",
+    "name" : "square function",
+    "description" : "Write a function which will be return square of integer passing as an arguments. For example, square(2) should return 4. Argument will be passing in main(String[] args) as args variable",
+    "courseNumber" : "1",
+    "subject" : "programming essentials"
   }
 ]

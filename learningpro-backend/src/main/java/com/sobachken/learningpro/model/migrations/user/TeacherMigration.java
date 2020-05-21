@@ -42,15 +42,17 @@ public class TeacherMigration implements MongoMigration {
     }
 
     private void saveTeacher(Teacher teacher, MongoTemplate mongoTemplate) {
-        Teacher savedTeacher = mongoTemplate.findOne(new Query().addCriteria(Criteria.where("login").is(teacher.getLogin())), Teacher.class);
+        Teacher savedTeacher = mongoTemplate.findOne(new Query().addCriteria(Criteria.where("id").is(teacher.getId())), Teacher.class);
         if (savedTeacher == null) {
             log.info("Create Teacher with login : '{}'", teacher.getLogin());
-            teacher.setId(UUID.randomUUID());
+            if (teacher.getId() == null ) {
+                teacher.setId(UUID.randomUUID());
+            }
             teacher.setPassword(bCryptPasswordEncoder.encode(teacher.getPassword()));
             mongoTemplate.save(teacher);
         } else {
             log.info("Update Teacher with login : '{}'", teacher.getLogin());
-            savedTeacher.setPassword(teacher.getPassword());
+            savedTeacher.setPassword(bCryptPasswordEncoder.encode(teacher.getPassword()));
             mongoTemplate.save(savedTeacher);
         }
     }

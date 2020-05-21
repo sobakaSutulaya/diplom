@@ -7,5 +7,14 @@
         "outputArgument": "4"
       }
     ]
+  },
+  {
+    "taskId": "24b5e420-1e46-4a0e-9a1b-5faecccda879",
+    "expectedResult": [
+      {
+        "inputArgument": "2",
+        "outputArgument": "4"
+      }
+    ]
   }
 ]

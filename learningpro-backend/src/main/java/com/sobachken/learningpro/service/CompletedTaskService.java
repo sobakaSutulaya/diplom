@@ -28,11 +28,13 @@ public class CompletedTaskService {
     }
 
     public CompletedTask getCompletedTask(UUID id) {
+        log.info("Get completed task by id = '{}'", id);
         return this.completedTaskRepository.findById(id)
                 .orElseThrow(() -> new HttpException(HttpStatus.NOT_FOUND, "Completed Task not found by id = " + id));
     }
 
     public UUID saveCompletedTask(UUID taskId, UUID studentId) {
+        log.info("save completed task for user id = '{}' and task id = '{}'", taskId, studentId);
         if (!this.studentService.existsById(studentId)) {
             throw new HttpException(HttpStatus.NOT_FOUND, "Student not found my id = " + studentId);
         }
@@ -54,6 +56,7 @@ public class CompletedTaskService {
     }
 
     public List<CompletedTask> getAllByStudentId(UUID studentId) {
+        log.info("Get completed tasks by student id = '{}'", studentId);
         return this.completedTaskRepository.findAllByStudentId(studentId);
     }
 }

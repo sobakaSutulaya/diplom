@@ -7,20 +7,23 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 @Data
-@ChangeLog(version = 3)
+@ChangeLog(version = 5)
 @Document("events")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Event {
     private UUID id;
     private String name;
+    private String description;
     private List<UUID> taskIds;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private Calendar startDate;
+    private Calendar endDate;
     private String subject;
     private int courseNumber;
     private UUID teacherId;

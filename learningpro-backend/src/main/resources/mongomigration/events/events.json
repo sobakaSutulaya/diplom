@@ -1,3 +1,19 @@
-[{
-
-}]
+[
+  {
+    "id": "d39a86ca-81ca-4b82-9dbf-c2bef1d2b3ce",
+    "name": "programming essentials exam",
+    "description": "programming essentials exam for first course",
+    "taskIds": [
+      "24b5e420-1e46-4a0e-9a1b-5faecccda879",
+      "34b5e420-1e46-4a0e-9a1b-5faecccda876"
+    ],
+    "startDate":1592733600000,
+    "endDate":1592748000000,
+    "subject": "programming essentials",
+    "courseNumber": 1,
+    "teacherId": "3ea32e19-de20-4129-b334-0d802859d98b",
+    "groupNames": [
+      "PO-63"
+    ]
+  }
+]

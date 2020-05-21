@@ -68,7 +68,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.localStorageService.clear();
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required])],
       password: ['', Validators.required]
