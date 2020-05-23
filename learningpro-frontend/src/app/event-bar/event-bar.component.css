@@ -7,19 +7,20 @@ mat-card {
 }
 
 mat-panel-title {
+  color: white;
   font-weight: bold;
   font-family: sans-serif;
   font-size: large;
 }
 
 mat-expansion-panel {
-  background-color: #4FC3F7;
+  background-color: #673AB7;
   padding: 1em;
   margin: 1em 1em;
 }
 
 mat-expansion-panel-header {
-  background-color: #31D4FA;
+  background-color: #512DA8;
   margin: 1em auto;
 }
 
@@ -28,12 +29,13 @@ mat-card-actions {
   text-align: center;
 }
 
-button {
-  background-color: #4FC3F7;
-}
-
 .default-padding-margin {
   margin: 0.25em 0.25em;
   padding: 0.25em;
 }
 
+.create-button {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+}

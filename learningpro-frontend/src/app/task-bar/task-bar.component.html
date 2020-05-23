@@ -1,22 +1,27 @@
 <mat-accordion class="default-padding-margin">
   <mat-expansion-panel [expanded]="true">
-    <mat-expansion-panel-header >
+    <mat-expansion-panel-header>
       <mat-panel-title>
         Tasks
       </mat-panel-title>
     </mat-expansion-panel-header>
+    <div class="create-button">
+    <button mat-fab color="warn" *ngIf="isAdmin()">+</button>
+    </div>
     <mat-card *ngFor="let task of tasks">
       <mat-card-header class="default-padding-margin">
         <mat-card-title>{{task.name}}</mat-card-title>
         <mat-card-subtitle>{{task.subject}} course:{{task.courseNumber}}</mat-card-subtitle>
       </mat-card-header>
+      <mat-divider></mat-divider>
       <mat-card-content class="default-padding-margin">
         <p>
           {{task.description}}
         </p>
       </mat-card-content>
+      <mat-divider></mat-divider>
       <mat-card-actions class="default-padding-margin">
-        <button mat-button (click)="openTask(task.id)">Start</button>
+        <button mat-raised-button color="primary" (click)="openTask(task.id)">Start</button>
       </mat-card-actions>
     </mat-card>
   </mat-expansion-panel>

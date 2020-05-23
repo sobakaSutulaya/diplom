@@ -3,6 +3,7 @@ import {ApiService} from '../common/api.service';
 import {Task} from '../model/task';
 import {Router} from "@angular/router";
 import {TaskStateService} from "../common/task-state.service";
+import {LocalStorageService} from "../common/local-storage.service";
 
 @Component({
   selector: 'app-task-bar',
@@ -11,7 +12,11 @@ import {TaskStateService} from "../common/task-state.service";
 })
 export class TaskBarComponent implements OnInit {
 
-  constructor(private apiService: ApiService, private router : Router, private taskStateService : TaskStateService) { }
+  constructor(private apiService: ApiService
+    , private router: Router,
+              private taskStateService: TaskStateService,
+              private localStorageService : LocalStorageService) {
+  }
 
   tasks: Task[];
 
@@ -28,6 +33,11 @@ export class TaskBarComponent implements OnInit {
     this.taskStateService.task = this.tasks.find(task => task.id === id);
     this.router.navigate(['/workspace']);
   }
+
+  private isAdmin() {
+    return this.localStorageService.getItem("userRole") === 'ROLE_ADMIN';
+  }
+
 
 
 }
