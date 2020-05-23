@@ -59,4 +59,11 @@ public class CompletedTaskService {
         log.info("Get completed tasks by student id = '{}'", studentId);
         return this.completedTaskRepository.findAllByStudentId(studentId);
     }
+
+    public String getSolution(UUID studentId, UUID taskId) {
+        log.info("Get task solution by student id = '{}' and taskId = '{}'", studentId, taskId);
+        CompletedTask completedTask = this.completedTaskRepository.findByStudentIdAndTaskId(studentId, taskId)
+                .orElseThrow(() -> new HttpException(HttpStatus.NOT_FOUND, "Not found completed task by student id = " + studentId + "and task id = " + taskId));
+        return completedTask.getSolution();
+    }
 }

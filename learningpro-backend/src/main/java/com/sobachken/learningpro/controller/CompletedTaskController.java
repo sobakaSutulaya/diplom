@@ -32,4 +32,9 @@ public class CompletedTaskController {
     public ResponseEntity<?> markAsComplete(@PathVariable UUID studentId, @PathVariable UUID taskId) {
         return ResponseEntity.ok(this.completedTaskService.saveCompletedTask(taskId, studentId));
     }
+
+    @GetMapping(SOLUTION_PATH + "/{studentId}/{taskId}")
+    public ResponseEntity<?> getSolution(@PathVariable UUID studentId, @PathVariable UUID taskId) {
+        return ResponseEntity.ok(this.completedTaskService.getSolution(studentId, taskId));
+    }
 }

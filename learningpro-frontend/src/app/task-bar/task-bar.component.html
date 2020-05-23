@@ -1,0 +1,23 @@
+<mat-accordion class="default-padding-margin">
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header >
+      <mat-panel-title>
+        Tasks
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-card *ngFor="let task of tasks">
+      <mat-card-header class="default-padding-margin">
+        <mat-card-title>{{task.name}}</mat-card-title>
+        <mat-card-subtitle>{{task.subject}} course:{{task.courseNumber}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="default-padding-margin">
+        <p>
+          {{task.description}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions class="default-padding-margin">
+        <button mat-button (click)="openTask(task.id)">Start</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-expansion-panel>
+</mat-accordion>

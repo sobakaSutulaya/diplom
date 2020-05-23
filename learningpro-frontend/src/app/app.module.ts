@@ -16,6 +16,8 @@ import { HeaderComponent } from './header/header.component';
 import { TaskBarComponent } from './task-bar/task-bar.component';
 import { ApiService } from './common/api.service';
 import { EventBarComponent } from './event-bar/event-bar.component';
+import { WorkspaceComponent } from './workspace/workspace.component';
+import {TaskStateService} from "./common/task-state.service";
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { EventBarComponent } from './event-bar/event-bar.component';
     HeaderComponent,
     TaskBarComponent,
     EventBarComponent,
+    WorkspaceComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,7 @@ import { EventBarComponent } from './event-bar/event-bar.component';
     MatCardModule,
     MatInputModule
   ],
-  providers: [AuthService, LocalStorageService, ApiService],
+  providers: [AuthService, LocalStorageService, ApiService, TaskStateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

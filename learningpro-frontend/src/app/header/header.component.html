@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h1>LearningPro</h1>
+    <div>
+      <a mat-button [routerLink]="[ '/home']" *ngIf="isLoggedIn$ | async">Home</a>
+    </div>
+    <span class="menu-spacer"></span>
+    <div class="logout-button">
+      <a mat-button [routerLink]="['/login']" onclick="logout()" *ngIf="isLoggedIn$ | async">Logout</a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

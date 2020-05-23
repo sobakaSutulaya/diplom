@@ -20,7 +20,8 @@ public class ApiPath {
     BY = "by-",
     BY_SUBJECT = BY + SUBJECT,
     BY_GROUP = BY + GROUP,
-    COMPLETED_EVENT = "completed-event";
+    COMPLETED_EVENT = "completed-event",
+    SOLUTION = "solution";
 
     public static final String APP_PATH = "/" + APP_NAME,
     USERS_PATH = APP_PATH + "/" + USERS,
@@ -39,7 +40,8 @@ public class ApiPath {
     BY_SUBJECT_PATH = "/" + BY_SUBJECT,
     BY_TEACHER_PATH = "/" + BY + "teacher",
     BY_GROUP_PATH = "/" + BY_GROUP,
-    COMPLETED_EVENT_V1_PATH = "/" + COMPLETED_EVENT;
+    COMPLETED_EVENT_V1_PATH = "/" + COMPLETED_EVENT,
+    SOLUTION_PATH = "/" + SOLUTION;
 
 
 }

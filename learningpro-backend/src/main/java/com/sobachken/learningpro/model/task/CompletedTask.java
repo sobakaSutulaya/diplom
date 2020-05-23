@@ -16,4 +16,5 @@ public class CompletedTask implements Identifiable {
     private UUID id;
     private UUID taskId;
     private UUID studentId;
+    private String solution;
 }
