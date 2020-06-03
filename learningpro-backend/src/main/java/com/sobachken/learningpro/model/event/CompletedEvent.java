@@ -1,5 +1,6 @@
 package com.sobachken.learningpro.model.event;
 
+import com.sobachken.learningpro.utils.Identifiable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import java.util.UUID;
 @Document("completedEvent")
 @AllArgsConstructor
 @NoArgsConstructor
-public class CompletedEvent {
+public class CompletedEvent implements Identifiable {
     private UUID id;
     private UUID studentId;
     private UUID eventId;

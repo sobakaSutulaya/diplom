@@ -1,6 +1,7 @@
 package com.sobachken.learningpro.model.event;
 
 import com.sobachken.learningpro.mongomigration.annotation.ChangeLog;
+import com.sobachken.learningpro.utils.Identifiable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ import java.util.UUID;
 @Document("events")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Event {
+public class Event implements Identifiable {
     private UUID id;
     private String name;
     private String description;
