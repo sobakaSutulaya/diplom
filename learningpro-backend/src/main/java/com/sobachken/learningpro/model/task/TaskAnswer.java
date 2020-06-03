@@ -20,7 +20,6 @@ public class TaskAnswer implements Identifiable {
     private UUID id;
     private UUID taskId;
     List<InputToOutputArgument> expectedResult;
-//    private Map<InputArgument, OutputArgument> expectedResult;
 
 
     @Data

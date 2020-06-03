@@ -23,7 +23,7 @@ public class ExecuteController {
 
     @PostMapping("/{taskId}" + EXECUTE_PATH)
     public ResponseEntity execute(@PathVariable UUID taskId, MultipartRequest multipartRequest) throws Exception {
-        this.executeService.execute(multipartRequest);
+        this.executeService.execute(multipartRequest, taskId);
         return ResponseEntity.ok().build();
     }
 
