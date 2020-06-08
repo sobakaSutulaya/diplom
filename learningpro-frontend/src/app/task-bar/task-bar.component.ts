@@ -4,6 +4,8 @@ import {Task} from '../model/task';
 import {Router} from "@angular/router";
 import {TaskStateService} from "../common/task-state.service";
 import {LocalStorageService} from "../common/local-storage.service";
+import {MatDialog, MatDialogConfig} from "@angular/material";
+import {CreateTaskDialogComponent} from "../create-task-dialog/create-task-dialog.component";
 
 @Component({
   selector: 'app-task-bar',
@@ -12,10 +14,11 @@ import {LocalStorageService} from "../common/local-storage.service";
 })
 export class TaskBarComponent implements OnInit {
 
-  constructor(private apiService: ApiService
-    , private router: Router,
+  constructor(private apiService: ApiService,
+              private router: Router,
               private taskStateService: TaskStateService,
-              private localStorageService : LocalStorageService) {
+              private localStorageService : LocalStorageService,
+              private dialog: MatDialog) {
   }
 
   tasks: Task[];
@@ -27,6 +30,7 @@ export class TaskBarComponent implements OnInit {
     }, error => {
       console.log(error);
     });
+    console.log("TaskBarComponent Initialized");
   }
 
   openTask(id: string) {
@@ -36,6 +40,23 @@ export class TaskBarComponent implements OnInit {
 
   private isAdmin() {
     return this.localStorageService.getItem("userRole") === 'ROLE_ADMIN';
+  }
+
+  openCreateTaskDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    const dialogRef = this.dialog.open(CreateTaskDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(val => {
+      console.log("Dialog Output:", val);
+      this.createNewTask(val);
+    });
+  }
+
+  createNewTask(task : Task) {
+      console.log("POST TASK : " + task);
   }
 
 

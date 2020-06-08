@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class StudentService {
@@ -32,9 +33,9 @@ public class StudentService {
     }
 
     //todo: a very bad decision by application design
-    public List<String> getAllGroupNamesByCourse(int course) {
-        List<Student> courseStudents = this.studentRepository.findAllByCourseNumber(course);
-        return courseStudents.stream()
+    public List<String> getAllGroupNames() {
+        Iterable<Student> courseStudents = this.studentRepository.findAll();
+        return StreamSupport.stream(courseStudents.spliterator(), false)
                 .map(Student::getGroupName)
                 .distinct()
                 .collect(Collectors.toList());

@@ -6,7 +6,9 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="create-button">
-    <button mat-fab color="warn" *ngIf="isAdmin()">+</button>
+    <button mat-fab  class="mat-raised-button mat-accent" color="warn"
+            *ngIf="isAdmin()"
+            (click)="openCreateTaskDialog()">+</button>
     </div>
     <mat-card *ngFor="let task of tasks">
       <mat-card-header class="default-padding-margin">
@@ -21,7 +23,10 @@
       </mat-card-content>
       <mat-divider></mat-divider>
       <mat-card-actions class="default-padding-margin">
-        <button mat-raised-button color="primary" (click)="openTask(task.id)">Start</button>
+        <button mat-raised-button color="primary" *ngIf="!isAdmin()"
+                (click)="openTask(task.id)">Start</button>
+        <button mat-raised-button color="primary" *ngIf="isAdmin()"
+                (click)="openTask(task.id)">Check</button>
       </mat-card-actions>
     </mat-card>
   </mat-expansion-panel>

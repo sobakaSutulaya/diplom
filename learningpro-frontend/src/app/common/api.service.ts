@@ -4,6 +4,7 @@ import {LocalStorageService} from './local-storage.service';
 import {ApiPath} from './api-path';
 import {Task} from '../model/task';
 import {Event} from '../model/event';
+import {Observable} from "rxjs";
 
 
 @Injectable()
@@ -21,6 +22,14 @@ export class ApiService {
 
     getAllEvents() {
         return this.httpClient.get<Event[]>(ApiPath.GET_ALL_EVENTS, this.authHeader());
+    }
+
+    createTask(task: Task) {
+      return this.httpClient.post(ApiPath.POST_CREATE_TASK, JSON.stringify(task), this.authHeader());
+    }
+
+    getAllGroupNames() {
+      return this.httpClient.get<Array<string>>(ApiPath.GET_ALL_GROUPS, this.authHeader())
     }
 
     private authHeader() {

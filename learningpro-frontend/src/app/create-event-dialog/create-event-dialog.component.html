@@ -1,0 +1,70 @@
+<h1 mat-dialog-title>Create New Event</h1>
+<mat-dialog-content [formGroup]="form">
+  <p>Event Name</p>
+  <mat-form-field>
+    <mat-label>Event Name</mat-label>
+    <input matInput placeholder="Event Name" formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Event Description</mat-label>
+    <textarea matInput placeholder="Event Description" formControlName="description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Select Course" formControlName="courseNumber">
+      <mat-option value="1">1</mat-option>
+      <mat-option value="2">2</mat-option>
+      <mat-option value="3">3</mat-option>
+      <mat-option value="4">4</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Write subject</mat-label>
+    <input  matInput placeholder="Task Subject" formControlName="subject">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Groups</mat-label>
+    <mat-select placeholder="Select Groups" multiple>
+      <mat-option *ngFor="let group of groups">{{group}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Start Date</mat-label>
+    <input  matInput [matDatepicker]="startDatePicker" formControlName="startDate">
+    <mat-datepicker-toggle matSuffix [for]="startDatePicker">
+
+    </mat-datepicker-toggle>
+    <mat-datepicker #startDatePicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>End Date</mat-label>
+    <input matInput [matDatepicker]="endDatePicker" formControlName="startDate">
+    <mat-datepicker-toggle matSuffix [for]="endDatePicker">
+
+    </mat-datepicker-toggle>
+    <mat-datepicker #endDatePicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Tasks</mat-label>
+    <mat-select placeholder="Select Groups" multiple>
+      <mat-option *ngFor="let task of tasks">{{task.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="mat-raised-button"
+          (click)="close()">
+    Close
+  </button>
+  <button class="mat-raised-button"
+          (click)="save()">
+    Save
+  </button>
+</mat-dialog-actions>

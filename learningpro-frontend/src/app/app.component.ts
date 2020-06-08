@@ -15,10 +15,10 @@ export class AppComponent implements OnDestroy, OnInit {
   constructor(private localStorageService: LocalStorageService, private router: Router) { }
 
   ngOnInit() {
-    // this.router.navigate(['/login']);
+    this.router.navigate(['/login']);
   }
 
   ngOnDestroy() {
-    // this.localStorageService.clear();
+    this.localStorageService.clear();
   }
 }

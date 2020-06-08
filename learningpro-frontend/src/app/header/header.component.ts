@@ -13,12 +13,13 @@ export class HeaderComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  logout() {
+  onLogout() {
     this.authService.logout();
   }
 
   ngOnInit() {
     this.isLoggedIn$ = this.authService.isLoggedIn;
+    console.log("HeaderComponent Initialized")
   }
 
 }

@@ -8,4 +8,6 @@ export abstract class ApiPath {
     static readonly GET_ALL_EVENTS = ApiPath.APP_V1_PATH + "/events";
     static readonly GET_ALL_TASKS = ApiPath.APP_V1_PATH + "/tasks";
     static readonly BEARER = 'Bearer ';
+    static readonly POST_CREATE_TASK = ApiPath.APP_V1_PATH + "/tasks";
+    static readonly GET_ALL_GROUPS = ApiPath.APP_V1_PATH + "/students/groups"
 }

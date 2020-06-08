@@ -6,7 +6,7 @@
     </div>
     <span class="menu-spacer"></span>
     <div class="logout-button">
-      <a mat-button [routerLink]="['/login']" onclick="logout()" *ngIf="isLoggedIn$ | async">Logout</a>
+      <a mat-button [routerLink]="['/login']" onclick="onLogout()" *ngIf="isLoggedIn$ | async">Logout</a>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

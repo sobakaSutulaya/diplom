@@ -72,6 +72,7 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.compose([Validators.required])],
       password: ['', Validators.required]
     });
+    console.log("LoginComponent Initialized")
   }
 
 }

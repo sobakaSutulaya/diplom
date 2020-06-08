@@ -26,8 +26,8 @@ public class StudentController {
         return ResponseEntity.ok(this.studentService.getStudent(id));
     }
 
-    @GetMapping("/groups/{course}")
-    public ResponseEntity<?> getAllGroups(@PathVariable int course) {
-        return ResponseEntity.ok(this.studentService.getAllGroupNamesByCourse(course));
+    @GetMapping("/groups")
+    public ResponseEntity<?> getAllGroups() {
+        return ResponseEntity.ok(this.studentService.getAllGroupNames());
     }
 }

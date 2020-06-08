@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
+
+    console.log("HomeComponent Initialized");
   }
 
 }
